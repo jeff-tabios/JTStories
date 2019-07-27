@@ -8,6 +8,6 @@
 
 import Foundation
 
-class AppConstant{
+class AppConstants{
     static let imgUrl = "https://static01.nyt.com/images"
 }

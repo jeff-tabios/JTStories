@@ -24,12 +24,10 @@ struct Story: Codable {
     let snippet: String
     let multimedia: [Multimedia]
     let headline: Headline
-    let pubDate: Date
     
     enum CodingKeys: String, CodingKey {
         case snippet
         case multimedia, headline
-        case pubDate = "pub_date"
     }
 }
 
