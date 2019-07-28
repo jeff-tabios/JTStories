@@ -37,17 +37,4 @@ class StoriesViewModelTests: XCTestCase {
         XCTAssertEqual(sut.storyViewModels.count, 10)
     }
 
-    func test_processStories(){
-        let multimedia = Multimedia(url: "/test/url/image.jpg")
-        let story = Story(snippet: "Test Snippet",
-                          multimedia: [multimedia],
-                          headline: Headline(main: "Test Headline"))
-        
-        let vms = sut.processStories(items: [story])
-        
-        XCTAssertEqual(vms[0].headline, story.headline.main)
-        XCTAssertEqual(vms[0].snippet, story.snippet)
-        XCTAssertEqual(vms[0].image, UIImage(named: AppConstants.imgUrl + story.multimedia[0].url))
-        
-    }
 }
