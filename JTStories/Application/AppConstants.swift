@@ -9,5 +9,5 @@
 import Foundation
 
 class AppConstants{
-    static let imgUrl = "https://static01.nyt.com/images"
+    static let imgUrl = "https://static01.nyt.com/"
 }
