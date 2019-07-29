@@ -19,8 +19,12 @@ class StoriesViewModel: AppendableList {
     var api:APIProtocol?
     var lastPageLoaded = -1
     var query = ""
-    var refreshStoryListClosure = (()-> Void).self
-    var storyViewModels:[StoryViewModel] = []
+    var refreshStoryListClosure:(()-> Void)?
+    var storyViewModels:[StoryViewModel] = [] {
+        didSet{
+            self.refreshStoryListClosure?()
+        }
+    }
     
     init(api:APIProtocol){
         self.api = api
@@ -34,7 +38,6 @@ class StoriesViewModel: AppendableList {
     }
     
     func getNextPage(){
-        
         api?.request(endPoint: StoryAPI.getStories(page: lastPageLoaded+1,q:query),
                      completion: { [weak self] (result:Result<Stories,APIServiceError>) in
                         switch result{

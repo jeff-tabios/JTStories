@@ -11,16 +11,16 @@ import UIKit
 
 public protocol StoryDetail{
     var story: Story {get set}
-    var image: UIImage? {get set}
-    var headline: String? {get set}
-    var snippet: String? {get set}
+    var image: URL? { get }
+    var headline: String? {get }
+    var snippet: String? {get }
 }
 
 public extension StoryDetail{
-    var image: UIImage? {
+    var image: URL? {
         if story.multimedia.count > 0 {
             let imageUrl = story.multimedia[0].url
-            return UIImage(named: AppConstants.imgUrl + imageUrl)
+            return URL(string: AppConstants.imgUrl + imageUrl)
         }
         return nil
     }
@@ -35,9 +35,6 @@ public extension StoryDetail{
 struct StoryViewModel: StoryDetail {
     
     var story: Story
-    var image: UIImage?
-    var headline: String?
-    var snippet: String?
     
     public init(story: Story){
         self.story = story
