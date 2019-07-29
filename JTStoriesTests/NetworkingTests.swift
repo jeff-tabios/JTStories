@@ -19,9 +19,14 @@ class NetworkingTests: XCTestCase {
         
         var stories:Stories?
         
-        api.request(endPoint: StoryAPI.getStories(page:1,q:"")) {(result:Stories?) in
-            expectation.fulfill()
-            stories = result
+        api.request(endPoint: StoryAPI.getStories(page:1,q:"")) {(result:Result<Stories,APIServiceError>) in
+            switch result{
+            case .success(let response):
+                expectation.fulfill()
+                stories = response
+            case .failure:
+                break
+            }
         }
         
         waitForExpectations(timeout: 5, handler: nil)

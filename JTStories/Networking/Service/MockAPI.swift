@@ -9,9 +9,9 @@
 import Foundation
 
 class MockAPI:APIProtocol{
+    
     private var data:Data?
-    func request<U:Codable>(endPoint: EndPoint, completion: @escaping (U?)->Void){
-
+    func request<U>(endPoint: EndPoint, completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable, U : Encodable {
         let jsonFile = "mockResponse"
         if let path = Bundle.main.path(forResource: jsonFile, ofType: "json") {
             do {
@@ -19,24 +19,24 @@ class MockAPI:APIProtocol{
                 data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
                 decode(completion: completion)
             } catch {
-                completion(nil)
+                completion(.failure(.noData))
             }
         }else{
             fatalError(jsonFile + ".json not found")
         }
     }
-
-    func decode<U:Decodable>(completion: @escaping (U?)->Void){
+    
+    func decode<U>(completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable {
         if let data = data {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             guard let result = try? decoder.decode(U.self, from: data) else{
-                completion(nil)
+                completion(.failure(.decodeError))
                 return
             }
-            completion(result)
+            completion(.success(result))
         }else{
-            completion(nil)
+            completion(.failure(.decodeError))
         }
     }
 }

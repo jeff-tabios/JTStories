@@ -14,12 +14,12 @@ class StoriesViewModelTests: XCTestCase {
     var sut = StoriesViewModel(api: MockAPI())
     
     func test_startAndget1Page() {
-        sut.refresh()
+        sut.reload()
         XCTAssertEqual(sut.storyViewModels.count, 10)
     }
     
     func test_get2Pages() {
-        sut.refresh()
+        sut.reload()
         XCTAssertEqual(sut.storyViewModels.count, 10)
         
         sut.getNextPage()
@@ -27,13 +27,13 @@ class StoriesViewModelTests: XCTestCase {
     }
     
     func test_get2PagesThenRefresh() {
-        sut.refresh()
+        sut.reload()
         XCTAssertEqual(sut.storyViewModels.count, 10)
         
         sut.getNextPage()
         XCTAssertEqual(sut.storyViewModels.count, 20)
         
-        sut.refresh()
+        sut.reload()
         XCTAssertEqual(sut.storyViewModels.count, 10)
     }
 
