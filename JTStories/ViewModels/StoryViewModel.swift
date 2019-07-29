@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class StoryViewModel {
-    private let story: Story
-    
-    public init(story: Story){
-        self.story = story
-    }
-    
+public protocol StoryDetail{
+    var story: Story {get set}
+    var image: UIImage? {get set}
+    var headline: String? {get set}
+    var snippet: String? {get set}
+}
+
+public extension StoryDetail{
     var image: UIImage? {
         if story.multimedia.count > 0 {
             let imageUrl = story.multimedia[0].url
@@ -23,11 +24,22 @@ class StoryViewModel {
         }
         return nil
     }
-    var headline: String {
+    var headline: String? {
         return story.headline.main
     }
-    var snippet: String {
+    var snippet: String? {
         return story.snippet
     }
+}
+
+struct StoryViewModel: StoryDetail {
     
+    var story: Story
+    var image: UIImage?
+    var headline: String?
+    var snippet: String?
+    
+    public init(story: Story){
+        self.story = story
+    }
 }

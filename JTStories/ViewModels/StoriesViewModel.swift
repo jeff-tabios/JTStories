@@ -8,10 +8,17 @@
 
 import Foundation
 
-class StoriesViewModel {
+protocol AppendableList{
+    var lastPageLoaded: Int {get set}
+    var query: String {get set}
+    func reload(with term:String)
+    func getNextPage()
+}
+
+class StoriesViewModel: AppendableList {
     var api:APIProtocol?
-    private var lastPageLoaded = -1
-    private var query = ""
+    var lastPageLoaded = -1
+    var query = ""
     var refreshStoryListClosure = (()-> Void).self
     var storyViewModels:[StoryViewModel] = []
     
@@ -19,7 +26,7 @@ class StoriesViewModel {
         self.api = api
     }
     
-    func refresh(with term:String = ""){
+    func reload(with term:String = ""){
         lastPageLoaded = -1
         query = term
         storyViewModels = []
@@ -27,10 +34,16 @@ class StoriesViewModel {
     }
     
     func getNextPage(){
-        api?.request(endPoint: StoryAPI.getStories(page: lastPageLoaded+1,q:query), completion: { [weak self] (stories:Stories?) in
-            guard let stories = stories else { return }
-            self?.lastPageLoaded += 1
-            self?.storyViewModels += stories.response.docs.map{StoryViewModel(story: $0)}
+        
+        api?.request(endPoint: StoryAPI.getStories(page: lastPageLoaded+1,q:query),
+                     completion: { [weak self] (result:Result<Stories,APIServiceError>) in
+                        switch result{
+                        case .success(let stories):
+                            self?.lastPageLoaded += 1
+                            self?.storyViewModels += stories.response.docs.map{StoryViewModel(story: $0)}
+                        case .failure:
+                            break
+                        }
         })
     }
 }
