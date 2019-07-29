@@ -20,7 +20,7 @@ struct Response: Codable {
 }
 
 // MARK: - Doc
-struct Story: Codable {
+public struct Story: Codable {
     let snippet: String
     let multimedia: [Multimedia]
     let headline: Headline
