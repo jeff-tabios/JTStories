@@ -9,9 +9,13 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
+    
     @IBOutlet weak var tableListView: UITableView!
+    @IBOutlet weak var tableTermsView: UITableView!
+    let searchBar = UISearchBar()
+    
     let vm = StoriesViewModel(api: API())
+    var terms = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,21 @@ class ListViewController: UIViewController {
                 self?.tableListView.reloadData()
             }
         }
+        
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        tableTermsView.isHidden = true
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let guide = view.safeAreaLayoutGuide
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableTermsView.translatesAutoresizingMaskIntoConstraints = false
+            tableTermsView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -keyboardSize.height+44).isActive = true
+        }
     }
     
     //MARK: SEGUE
@@ -35,23 +54,8 @@ class ListViewController: UIViewController {
             controller.storyViewModel = s.storyViewModel
         }
     }
-}
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.storyViewModels.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
-        cell.storyViewModel = vm.storyViewModels[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = vm.storyViewModels.count - 1
-        if indexPath.row == lastElement {
-            vm.getNextPage()
-        }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
