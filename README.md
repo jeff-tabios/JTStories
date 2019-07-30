@@ -40,4 +40,4 @@ Unit Testing:
 - Sample Unit tests for Stories View Model to test for data transformation
 
 
-This sample combines the following: POP, MVVM, Generics, Decorator, Facade, Mocking, Data binding using closure
+This sample combines the following: POP, MVVM, Generics, Decorator, Facade, Mocking, Data binding using closure, Dependency Injection
