@@ -19,12 +19,13 @@
 		6279B14222EF0EE20064F8E3 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279B14122EF0EE20064F8E3 /* StoryViewController.swift */; };
 		6279B14522EF2E7A0064F8E3 /* UIImageView+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279B14422EF2E7A0064F8E3 /* UIImageView+Cache.swift */; };
 		6279B14722EF31960064F8E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6279B14622EF31960064F8E3 /* Assets.xcassets */; };
+		6279B14922EFFDE40064F8E3 /* ListViewController+TableDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279B14822EFFDE40064F8E3 /* ListViewController+TableDelegateExtension.swift */; };
+		6279B14B22EFFF0B0064F8E3 /* ListViewController+SearchDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279B14A22EFFF0B0064F8E3 /* ListViewController+SearchDelegateExtension.swift */; };
 		62BFFF4E22ECCE0E004F90B1 /* mockResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BFFF4D22ECCE0E004F90B1 /* mockResponse.json */; };
 		62BFFF5022EDA9E3004F90B1 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFFF4F22EDA9E2004F90B1 /* StoryViewModel.swift */; };
 		62DBB1A822EC821C004846CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBB1A722EC821C004846CC /* AppDelegate.swift */; };
 		62DBB1AA22EC821C004846CC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBB1A922EC821C004846CC /* ListViewController.swift */; };
 		62DBB1AD22EC821C004846CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBB1AB22EC821C004846CC /* Main.storyboard */; };
-		62DBB1B022EC821D004846CC /* JTStories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62DBB1AE22EC821D004846CC /* JTStories.xcdatamodeld */; };
 		62DBB1B522EC8234004846CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBB1B322EC8234004846CC /* LaunchScreen.storyboard */; };
 		62DBB1CB22EC8234004846CC /* JTStoriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBB1CA22EC8234004846CC /* JTStoriesUITests.swift */; };
 		62DBB1DF22EC8CFC004846CC /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBB1D822EC8C4D004846CC /* NetworkingTests.swift */; };
@@ -61,13 +62,14 @@
 		6279B14122EF0EE20064F8E3 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		6279B14422EF2E7A0064F8E3 /* UIImageView+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Cache.swift"; sourceTree = "<group>"; };
 		6279B14622EF31960064F8E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6279B14822EFFDE40064F8E3 /* ListViewController+TableDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+TableDelegateExtension.swift"; sourceTree = "<group>"; };
+		6279B14A22EFFF0B0064F8E3 /* ListViewController+SearchDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+SearchDelegateExtension.swift"; sourceTree = "<group>"; };
 		62BFFF4D22ECCE0E004F90B1 /* mockResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockResponse.json; sourceTree = "<group>"; };
 		62BFFF4F22EDA9E2004F90B1 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		62DBB1A422EC821C004846CC /* JTStories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTStories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DBB1A722EC821C004846CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62DBB1A922EC821C004846CC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		62DBB1AC22EC821C004846CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		62DBB1AF22EC821D004846CC /* JTStories.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JTStories.xcdatamodel; sourceTree = "<group>"; };
 		62DBB1B422EC8234004846CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62DBB1B622EC8234004846CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DBB1BB22EC8234004846CC /* JTStoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTStoriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,15 @@
 				6279B14422EF2E7A0064F8E3 /* UIImageView+Cache.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6279B14C22F024A30064F8E3 /* ListViewControllerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				6279B14822EFFDE40064F8E3 /* ListViewController+TableDelegateExtension.swift */,
+				6279B14A22EFFF0B0064F8E3 /* ListViewController+SearchDelegateExtension.swift */,
+			);
+			path = ListViewControllerExtensions;
 			sourceTree = "<group>";
 		};
 		62DBB19B22EC821C004846CC = {
@@ -235,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				62DBB1A922EC821C004846CC /* ListViewController.swift */,
+				6279B14C22F024A30064F8E3 /* ListViewControllerExtensions */,
 				62E1054122EF0BB1001DC5FF /* ListCell.swift */,
 				6279B14122EF0EE20064F8E3 /* StoryViewController.swift */,
 			);
@@ -244,7 +256,6 @@
 		62DBB1DE22EC8C92004846CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				62DBB1AE22EC821D004846CC /* JTStories.xcdatamodeld */,
 				623F515222ECA11A00F2DBF3 /* Stories.swift */,
 			);
 			path = Models;
@@ -382,9 +393,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6279B14B22EFFF0B0064F8E3 /* ListViewController+SearchDelegateExtension.swift in Sources */,
+				6279B14922EFFDE40064F8E3 /* ListViewController+TableDelegateExtension.swift in Sources */,
 				62BFFF5022EDA9E3004F90B1 /* StoryViewModel.swift in Sources */,
 				623F515322ECA11A00F2DBF3 /* Stories.swift in Sources */,
-				62DBB1B022EC821D004846CC /* JTStories.xcdatamodeld in Sources */,
 				62DBB1AA22EC821C004846CC /* ListViewController.swift in Sources */,
 				623F515122EC9A5200F2DBF3 /* EndPoint.swift in Sources */,
 				62E1054222EF0BB1001DC5FF /* ListCell.swift in Sources */,
@@ -726,19 +738,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		62DBB1AE22EC821D004846CC /* JTStories.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				62DBB1AF22EC821D004846CC /* JTStories.xcdatamodel */,
-			);
-			currentVersion = 62DBB1AF22EC821D004846CC /* JTStories.xcdatamodel */;
-			path = JTStories.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 62DBB19C22EC821C004846CC /* Project object */;
 }
