@@ -11,7 +11,8 @@ import XCTest
 
 class NetworkingTests: XCTestCase {
 
-    let api = API()
+    let liveApi =  API()
+    let mockApi = MockAPI()
     
     func test_getItems(){
         
@@ -19,7 +20,7 @@ class NetworkingTests: XCTestCase {
         
         var stories:Stories?
         
-        api.request(endPoint: StoryAPI.getStories(page:1,q:"")) {(result:Result<Stories,APIServiceError>) in
+        mockApi.request(endPoint: StoryAPI.getStories(page:1,q:"")) {(result:Result<Stories,APIServiceError>) in
             switch result{
             case .success(let response):
                 expectation.fulfill()
@@ -29,9 +30,41 @@ class NetworkingTests: XCTestCase {
             }
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         XCTAssertEqual(stories?.response.docs.count, 10)
     }
 
+    func test_decode(){
+        let expectation1 = self.expectation(description: "GetTest")
+        
+        var stories:Stories?
+        
+        mockApi.request(endPoint: StoryAPI.getStories(page:1,q:"")) {(result:Result<Stories,APIServiceError>) in
+            switch result{
+            case .success:
+                expectation1.fulfill()
+            case .failure:
+                XCTFail()
+            }
+            
+        }
+        
+        let expectation2 = self.expectation(description: "DecodeTest")
+        liveApi.data = mockApi.data
+        
+        liveApi.decode { (result:Result<Stories,APIServiceError>) in
+            switch result{
+            case .success(let response):
+                stories = response
+                expectation2.fulfill()
+            case .failure:
+                XCTFail()
+            }
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        XCTAssertEqual(stories?.response.docs[0].headline.main, "Singapore Seizes Ivory From Nearly 300 Elephants in Record Haul")
+        
+    }
 }
