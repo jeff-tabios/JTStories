@@ -10,7 +10,7 @@ import Foundation
 
 class MockAPI:APIProtocol{
     
-    private var data:Data?
+    var data:Data?
     func request<U>(endPoint: EndPoint, completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable, U : Encodable {
         let jsonFile = "mockResponse"
         if let path = Bundle.main.path(forResource: jsonFile, ofType: "json") {
