@@ -14,7 +14,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableTermsView: UITableView!
     let searchBar = UISearchBar()
     
-    let vm = StoriesViewModel(api: API())
+    var vm = StoriesViewModel(api: API())
     var terms = [String]()
     
     override func viewDidLoad() {
