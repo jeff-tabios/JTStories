@@ -83,7 +83,6 @@ class ListViewControllerTests: XCTestCase {
         
     }
     
-    
     func test_searchBarTap_ShowsTermsList(){
         sut.searchBar.becomeFirstResponder()
         sut.terms.append("jump")
@@ -111,7 +110,6 @@ class ListViewControllerTests: XCTestCase {
         let tableCell = sut.tableListView.cellForRow(at: indexPath) as! ListCell
         XCTAssertEqual(tableCell.heading.text, "Singapore Seizes Ivory From Nearly 300 Elephants in Record Haul")
     }
-    
     
     
     //HELPERS:
