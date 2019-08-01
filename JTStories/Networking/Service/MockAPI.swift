@@ -8,11 +8,10 @@
 
 import Foundation
 
-class MockAPI:APIProtocol{
-    
-    var data:Data?
-    func request<U>(endPoint: EndPoint, completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable, U : Encodable {
-        let jsonFile = "mockResponse"
+class MockAPI:API{
+    var jsonFile = "mockResponse"
+    override func request<U>(endPoint: EndPoint, completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable, U : Encodable {
+        
         if let path = Bundle.main.path(forResource: jsonFile, ofType: "json") {
             do {
                 let fileUrl = URL(fileURLWithPath: path)
@@ -22,21 +21,7 @@ class MockAPI:APIProtocol{
                 completion(.failure(.noData))
             }
         }else{
-            fatalError(jsonFile + ".json not found")
-        }
-    }
-    
-    func decode<U>(completion: @escaping (Result<U, APIServiceError>) -> Void) where U : Decodable {
-        if let data = data {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            guard let result = try? decoder.decode(U.self, from: data) else{
-                completion(.failure(.decodeError))
-                return
-            }
-            completion(.success(result))
-        }else{
-            completion(.failure(.decodeError))
+            completion(.failure(.fileNotFound))
         }
     }
 }
