@@ -9,11 +9,13 @@
 import Foundation
 
 public enum APIServiceError: Error {
+    case none
     case apiError
     case invalidEndpoint
     case invalidResponse
     case noData
     case decodeError
+    case fileNotFound
 }
 
 protocol APIProtocol{
